@@ -12,15 +12,15 @@ jobs:
         with:
           submodules: 'recursive'
 
+      - name: Create release folder
+        run: mkdir -p github-release
+
       - name: Archive Release
         uses: thedoctor0/zip-release@0.7.1
         with:
           type: 'tar'
           filename: 'github-release/latest.tar.gz'
           exclusions: '*.git* github-release .editorconfig'
-
-      - name: Create release folder
-        run: mkdir -p github-release
 
       - name: Upload Release
         uses: ncipollo/release-action@v1.12.0
