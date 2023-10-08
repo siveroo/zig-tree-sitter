@@ -16,14 +16,16 @@ jobs:
         uses: thedoctor0/zip-release@0.7.1
         with:
           type: 'tar'
-          filename: 'latest.tar.gz'
-          exclusions: '*.git* .editorconfig'
-          custom: '-h --warning=no-file-changed'
+          filename: 'github-release/latest.tar.gz'
+          exclusions: '*.git* github-release .editorconfig'
+
+      - name: Create release folder
+        run: mkdir -p github-release
 
       - name: Upload Release
         uses: ncipollo/release-action@v1.12.0
         with:
-          artifacts: "latest.tar.gz"
+          artifacts: "github-release/latest.tar.gz"
           token: ${{ secrets.GITHUB_TOKEN }}
 
 
