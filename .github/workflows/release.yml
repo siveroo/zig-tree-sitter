@@ -12,6 +12,11 @@ jobs:
         with:
           submodules: 'recursive'
 
+      - name: Replace symlink with actual file
+        run: |
+          chmod +x ./.github/scripts/unsymlink.sh
+          find . -type l -exec ./.github/scripts/unsymlink.sh {} +
+
       - name: Create release folder
         run: mkdir -p github-release
 
@@ -21,7 +26,6 @@ jobs:
           type: 'tar'
           filename: 'github-release/latest.tar.gz'
           exclusions: '*.git* github-release .editorconfig'
-          custom: '-h'
 
       - name: Upload Release
         uses: ncipollo/release-action@v1.12.0
