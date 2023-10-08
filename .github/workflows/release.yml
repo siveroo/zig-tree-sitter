@@ -20,10 +20,6 @@ jobs:
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            . # Include all files from the main repository
-            $(find . -name '.git' -type d -prune -exec dirname {} \;) # Include all submodule source code
 
 
 
