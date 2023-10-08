@@ -16,7 +16,7 @@ jobs:
         run: |
           git config user.name "$(git log -1 --pretty='%cn')"
           git config user.email "$(git log -1 --pretty='%ce')"
-      - run: ls -l
+      - run: find tree-sitter/
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
