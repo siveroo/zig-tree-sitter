@@ -18,7 +18,7 @@ jobs:
           type: 'tar'
           filename: 'latest.tar.gz'
           exclusions: '*.git* .editorconfig'
-          custom: '-h'
+          custom: '-h --warning=no-file-changed'
 
       - name: Upload Release
         uses: ncipollo/release-action@v1.12.0
