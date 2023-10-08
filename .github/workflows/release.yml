@@ -21,6 +21,7 @@ jobs:
           type: 'tar'
           filename: 'github-release/latest.tar.gz'
           exclusions: '*.git* github-release .editorconfig'
+          custom: '-h'
 
       - name: Upload Release
         uses: ncipollo/release-action@v1.12.0
