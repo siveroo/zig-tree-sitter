@@ -18,7 +18,7 @@ pub extern fn tree_sitter_json() lib.TSLanguage;
 pub const example_source =
     \\ {
     \\     "test": [
-    \\         2022,
+    \\         2023,
     \\         null
     \\     ]
     \\ }
@@ -39,5 +39,5 @@ pub fn get_node() !lib.Node {
 }
 
 test "Ensure `tree-sitter-json` is properly linked" {
-    try testing.expectEqual(get_language().version(), 13);
+    try testing.expectEqual(get_language().version(), 14);
 }
