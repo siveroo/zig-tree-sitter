@@ -82,7 +82,7 @@ pub const Parser = struct {
 
     pub fn parse_string(self: Parser, input: []const u8, encoding: Encoding, old_tree: ?Tree) ParseFailure!Tree {
         const old_tree_ptr = if (old_tree) |_| old_tree.?.tree else null;
-        return Tree.init(api.ts_parser_parse_string_encoding(self.parser, old_tree_ptr, input.ptr, @truncate(u32, input.len), @enumToInt(encoding)) orelse return ParseFailure.Cancelled);
+        return Tree.init(api.ts_parser_parse_string_encoding(self.parser, old_tree_ptr, input.ptr, @as(u32, @truncate(input.len)), @intFromEnum(encoding)) orelse return ParseFailure.Cancelled);
     }
 
     test "Parsing strings" {
