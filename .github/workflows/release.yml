@@ -8,22 +8,21 @@ jobs:
 
     steps:
       - name: Check out the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: 'recursive'
 
-      - name: Set up Git
-        run: |
-          git config user.name "$(git log -1 --pretty='%cn')"
-          git config user.email "$(git log -1 --pretty='%ce')"
-
-      - name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
+      - name: Archive Release
+        uses: thedoctor0/zip-release@0.7.1
         with:
-          files: |
-            tree-sitter/*
-            tree-sitter-*/src/*
-
+          type: 'tar'
+          filename: 'latest.tar.gz'
+          exclusions: '*.git* .editorconfig'
+          
+      - name: Upload Release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          artifacts: "latest.tar.gz"
+          token: ${{ secrets.GITHUB_TOKEN }}
 
 
