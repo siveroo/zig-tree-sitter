@@ -1,0 +1,33 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+
+      - name: Set up Git
+        run: |
+          git config user.name "$(git log -1 --pretty='%cn')"
+          git config user.email "$(git log -1 --pretty='%ce')"
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            . # Include all files from the main repository
+            $(find . -name '.git' -type d -prune -exec dirname {} \;) # Include all submodule source code
+
+      - name: Get Release URL
+        id: release_url
+        run: echo "Release URL: ${{ steps.create_release.outputs.upload_url }}"
