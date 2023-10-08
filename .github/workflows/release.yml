@@ -28,6 +28,6 @@ jobs:
             . # Include all files from the main repository
             $(find . -name '.git' -type d -prune -exec dirname {} \;) # Include all submodule source code
 
-      - name: Get Release URL
-        id: release_url
-        run: echo "Release URL: ${{ steps.create_release.outputs.upload_url }}"
+
+
+
