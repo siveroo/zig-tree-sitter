@@ -1,3 +1,7 @@
+Forked from [vhyrro/zig-tree-sitter](https://github.com/vhyrro/zig-tree-sitter)
+
+---
+
 # High Level Bindings for `tree-sitter`
 
 This repository hosts treesitter bindings for the Zig programming language.
