@@ -4,6 +4,10 @@ pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
+    _ = b.addModule("zig-tree-sitter", .{
+        .source_file = .{ .path = "src/lib.zig" },
+    });
+
     const lib = b.addStaticLibrary(.{
         .name = "zig-tree-sitter",
         .target = target,
